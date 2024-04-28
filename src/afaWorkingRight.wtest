@@ -1,0 +1,91 @@
+import example.*
+import jugadores.*
+import estadios.*
+
+test "ganancia neta de un partido homenaje a messi en la bombonera donde; 
+      las entradas cuestan $10.000, messi cobra $3.000.000 de viatico con una
+	  popularidad del 98% y la bombonera tiene capacidad de 50.000 y cobra 
+	  $3.000.000 de alquiler" {
+	
+	messi.viaticoAcordado(3000000)
+	messi.popularidad(98)
+	bombonera.alquiler(3000000)
+	bombonera.capacidad(50000)
+	afa.entradaPrecio(10000)
+	afa.realizarHomenaje(bombonera, messi)
+
+	assert.equals(474000000, afa.recaudacionTotal())
+
+}
+
+test "la popularidad de ronaldo es la mitad que la de messi (siendo su popularidad del 98%)" {
+	
+	messi.popularidad(98)
+	assert.equals(0.49, ronaldo.popularidad())
+}
+
+test "la capacidad del monumental depende del avance de las obras; estando las obras al 
+       25%, 50%, 75% de completarse y completas" {
+       	
+       	monumental.capacidad(25)
+       	assert.equals(20000, monumental.capacidad())
+       	monumental.capacidad(50)
+       	assert.equals(40000, monumental.capacidad())
+       	monumental.capacidad(75)
+       	assert.equals(60000, monumental.capacidad())
+       	monumental.capacidad(100)
+       	assert.equals(80000, monumental.capacidad())
+}
+
+test "la popularidad de mbappe depende de su edad y la cantidad de goles hechos en finales
+      del mundo; teniendo 25 y habiendo hecho 10 goles" {
+      	
+      	mbappe.popularidad(25, 10)
+      	assert.equals(0.6, mbappe.popularidad())
+      }
+
+test "ganancia neta de un partido homenaje a ronaldo en el monumental donde; 
+      las entradas cuestan $15.000, ronaldo cobra $5.000.000 de viatico con una
+	  popularidad del 60% y en el monumental las obras estan avanzadas un 75% y cobra 
+	  $3.000.000 de alquiler" {
+	  	
+	  	ronaldo.viaticoAcordado(5000000)
+		messi.popularidad(120)
+		monumental.alquiler(3000000)
+		monumental.capacidad(75)
+		afa.entradaPrecio(15000)
+		afa.realizarHomenaje(monumental, ronaldo)
+	  	assert.equals(522000000, afa.recaudacionTotal())
+}
+
+test "ganancia neta de un partido homenaje a mbappe en el monumental donde; 
+      las entradas cuestan $5.000, mbappe cobra $1.000.000 de viatico con 19 años
+      y 3 goles hechos en finales del mundo, en el monumental las obras estan avanzadas
+	  un 30% y cobra $1.500.000 de alquiler" {
+	  	
+	  	mbappe.viaticoAcordado(1000000)
+		mbappe.popularidad(19, 3)
+		monumental.alquiler(1500000)
+		monumental.capacidad(30)
+		afa.entradaPrecio(5000)
+		afa.realizarHomenaje(monumental, mbappe)
+	  	assert.equals(69500000, afa.recaudacionTotal())
+	  	
+	  	mbappe.popularidad(19, 3)
+	  	assert.equals(0.41, mbappe.popularidad())
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
